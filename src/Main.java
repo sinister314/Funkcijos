@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -117,6 +118,60 @@ public class Main {
         System.out.println("Pradinis Sakinys" + " " + pradinisSakinys);
         System.out.println("Uzduotas Sakinys" + " " + uzduotas);
 
+        System.out.println();
+        System.out.println("----Sunksni Uzt.1----- ");
+        //Parašykite funkciją, kurios argumentas būtų tekstas,
+        // kuris būtų atspausdinamas konsolėje pridedant “---” pradžioje ir gale.
+        // PVZ (---labas---)
+
+        String ManoTextas = "Vilnius Coding School";
+        spausdintiSuBruksniukais(ManoTextas);
+
+        System.out.println();
+        System.out.println("-----uzt.2-----");
+        //Sugeneruokite atsitiktinį stringą iš raidžių ir skaičių (10 simbolių).
+        // Atspausdinkite simbolius stulpeliu. Jei tai skaičius apgaubkite “ [ 7 ]”.
+        // Jei skaičiai eina keli iš eilės, apgaubkite juos kartu. [75].
+
+        int ilgis = 10;
+        String atsitiktinisStringas = generuotiAtsitiktiniStringa(ilgis);
+
+        System.out.println("Atsitiktinis stringas: " + atsitiktinisStringas);
+        System.out.println("Simboliai stulpeliu:");
+        atspausdinti(atsitiktinisStringas);
+
+        System.out.println();
+        System.out.println("-----uzt.3-----");
+        //Parašykite funkciją, kuri skaičiuotų,
+        // ir gražintų iš kiek sveikų skaičių jos argumentas dalijasi be liekanos
+        // (išskyrus vienetą ir patį save).
+
+        int skaicius = 12;
+        int dalikliuSk = skaiciuotiDaliklius(skaicius);
+
+        System.out.println(" Skaicius : " + skaicius + " Dalijasi be liekanos is :" + dalikliuSk + " " + "skaiciu");
+
+        System.out.println();
+        System.out.println("-----uzt.4-----");
+        //Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 33 iki 77.
+        // Išrūšiuokite masyvą pagal daliklių be liekanos kiekį mažėjimo tvarka, panaudodami trečio uždavinio funkciją.
+
+        int[] masyvas1 = new int[100];
+        int  dalikliuSk1 = skaiciuotiDa(skaicius);
+
+
+        Random rand = new Random();
+
+        for (int i = 0; i < masyvas1.length; i++) {
+            masyvas1[i] = rand.nextInt(45) + 33;
+        }
+
+        Arrays.sort(masyvas1);
+
+        System.out.println(dalikliuSk1);
+        System.out.println(Arrays.toString(masyvas1));
+
+
 
     }
 
@@ -222,6 +277,72 @@ public class Main {
         return uzkoduotasSakinys.toString();
 
     }
+
+    public static void spausdintiSuBruksniukais(String textas) {
+        System.out.println("----" + textas + "----");
+    }
+
+    public static String generuotiAtsitiktiniStringa(int ilgis) {
+        String galimosRaides = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random rand = new Random();
+        StringBuilder atsitiktinisStringas = new StringBuilder();
+
+        for (int i = 0; i < ilgis; i++) {
+            char simbolis = galimosRaides.charAt(rand.nextInt(galimosRaides.length()));
+            atsitiktinisStringas.append(simbolis);
+        }
+
+        return atsitiktinisStringas.toString();
+    }
+
+    public static void atspausdinti(String tekstas) {
+        for (char simbolis : tekstas.toCharArray()) {
+            if (Character.isDigit(simbolis)) {
+                System.out.print(" [" + simbolis + "] ");
+            } else {
+                System.out.print(simbolis + " ");
+            }
+            if (simbolis == ' ' || !Character.isLetterOrDigit(simbolis)) {
+                System.out.println();
+            }
+        }
+    }
+
+   /* public static String generateRndStr(int length) {
+        String symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890";
+        String text = "";
+        for (int i = 0; i < length; i++) {
+            text += symbols.charAt((int) (Math.random()*symbols.length()));
+        }
+        return text;
+    }
+    */
+
+    public static int skaiciuotiDaliklius (int skaicius){
+        int dalikliuSkaicius = 0;
+        for (int i = 2; i <= skaicius / 2; i++) {
+            if (skaicius % i == 0) {
+                dalikliuSkaicius++;
+            }
+        }
+        return dalikliuSkaicius;
+
+    }
+
+
+    public static int skaiciuotiDa(int skaicius) {
+        int dalikliuSk1 = 0;
+
+        for (int i = 2; i <= skaicius / 2; i++) {
+            if (skaicius % i == 0) {
+                dalikliuSk1++;
+            }
+        }
+
+        return dalikliuSk1;
+    }
+
+
 
 
 
