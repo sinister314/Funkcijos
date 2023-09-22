@@ -157,7 +157,7 @@ public class Main {
         // Išrūšiuokite masyvą pagal daliklių be liekanos kiekį mažėjimo tvarka, panaudodami trečio uždavinio funkciją.
 
         int[] masyvas1 = new int[100];
-        int  dalikliuSk1 = skaiciuotiDa(skaicius);
+        int dalikliuSk1 = skaiciuotiDa(skaicius);
 
 
         Random rand = new Random();
@@ -171,9 +171,50 @@ public class Main {
         System.out.println(dalikliuSk1);
         System.out.println(Arrays.toString(masyvas1));
 
+        System.out.println();
+        System.out.println("-----uzt.5-----");
+        //Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 333 iki 777.
+        // Naudodami 3 uždavinio funkciją iš masyvo suskaičiuokite kiek yra pirminių skaičių.
+
+        int[] skaiciuMasyvas = new int[100];
+
+
+        for (int i = 0; i < 100; i++) {
+            skaiciuMasyvas[i] = rand.nextInt(445) + 333;
+        }
+
+        for (int skaicius1 : skaiciuMasyvas) {
+            boolean dalijasi = dalijasiBeLiekanos(skaicius1);
+
+            if (dalijasi) {
+                System.out.println("Skaicius: " + skaicius1 + " dalijasi is kitu skaiciu");
+            } else {
+                System.out.println("Skaicius: " + skaicius1 + " nesidalija is kitu skaiciu");
+            }
+        }
+
+        System.out.println();
+        System.out.println("----uzt.6----");
+        //(NEveikia, nedaryti) Sugeneruokite atsitiktinio (nuo 10 iki 20) ilgio masyvą,
+        // kurio visi, išskyrus paskutinį, elementai yra atsitiktiniai skaičiai nuo 0 iki 10,
+        // o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir pirmasis masyvas.
+        // Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų.
+        // Paskutinio masyvo paskutinis elementas yra lygus 0;
+
+
+
+
+
+
+
+
+
 
 
     }
+
+
+
 
     private static void sumuotiMasyva(int[] miau) {
     }
@@ -282,6 +323,19 @@ public class Main {
         System.out.println("----" + textas + "----");
     }
 
+    public static void atspausdinti(String tekstas) {
+        for (char simbolis : tekstas.toCharArray()) {
+            if (Character.isDigit(simbolis)) {
+                System.out.println(" [" + simbolis + "] ");
+            } else {
+                System.out.println(simbolis + " ");
+            }
+            if (simbolis == ' ' || !Character.isLetterOrDigit(simbolis)) {
+                System.out.println();
+            }
+        }
+    }
+
     public static String generuotiAtsitiktiniStringa(int ilgis) {
         String galimosRaides = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         Random rand = new Random();
@@ -295,18 +349,7 @@ public class Main {
         return atsitiktinisStringas.toString();
     }
 
-    public static void atspausdinti(String tekstas) {
-        for (char simbolis : tekstas.toCharArray()) {
-            if (Character.isDigit(simbolis)) {
-                System.out.print(" [" + simbolis + "] ");
-            } else {
-                System.out.print(simbolis + " ");
-            }
-            if (simbolis == ' ' || !Character.isLetterOrDigit(simbolis)) {
-                System.out.println();
-            }
-        }
-    }
+
 
    /* public static String generateRndStr(int length) {
         String symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890";
@@ -318,7 +361,7 @@ public class Main {
     }
     */
 
-    public static int skaiciuotiDaliklius (int skaicius){
+    public static int skaiciuotiDaliklius(int skaicius) {
         int dalikliuSkaicius = 0;
         for (int i = 2; i <= skaicius / 2; i++) {
             if (skaicius % i == 0) {
@@ -342,7 +385,15 @@ public class Main {
         return dalikliuSk1;
     }
 
-
+    public static boolean dalijasiBeLiekanos(int skaicius1) {
+        if (skaicius1 < 2) return false;
+        for (int i = 2; i <= Math.sqrt(skaicius1); i++) {
+            if (skaicius1 % i == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 
